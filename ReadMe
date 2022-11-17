@@ -1,0 +1,58 @@
+# BSides Edmonton 2022 - Rate Limiting Using Nginx and Fail2Ban
+
+Show example with a rate limit of one:
+
+```
+limit_req_zone $binary_remote_addr zone=bsides:10m rate=1r/s;
+
+server {
+  location / {
+    root   /usr/share/nginx/html;
+    index  index.html index.htm;
+
+    limit_req zone=bsides;
+  }
+}
+```
+
+This will generate 503 errors.  By default NGINX will show "Error occured" page.  Use developer tools to look at header and see it was 503.
+
+NGINX tracks rates at millisecond level so 10r/s is actuall 1 request for 100 milliseconds.
+
+Show the log errors in the error.log file.  Currently sdtout and stderr.
+
+```
+2022/11/17 04:30:25 [error] 71#71: *50 limiting requests, excess: 0.975 by zone "bsides", client: 172.22.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:8080", referrer: "http://localhost:8080/"
+2022/11/17 04:30:25 [error] 72#72: *51 limiting requests, excess: 0.815 by zone "bsides", client: 172.22.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost:8080"
+2022/11/17 04:30:25 [error] 72#72: *51 limiting requests, excess: 0.723 by zone "bsides", client: 172.22.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:8080", referrer: "http://localhost:8080/"
+2022/11/17 04:30:25 [error] 72#72: *52 limiting requests, excess: 0.651 by zone "bsides", client: 172.22.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost:8080"
+2022/11/17 04:30:25 [error] 72#72: *52 limiting requests, excess: 0.573 by zone "bsides", client: 172.22.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:8080", referrer: "http://localhost:8080/"
+```
+
+
+
+Docker Compose with Ports:
+```
+docker compose run --service-ports --rm demo-start bash
+```
+
+NGINX start:
+```
+nginx
+```
+
+NGINX check config:
+```
+nginx -t
+```
+
+NGINX stop/quit/reopen/reload
+```
+nginx -s stop/quit/reopen/reload
+```
+
+Nginx rate limiting:
+https://www.nginx.com/blog/rate-limiting-nginx/
+
+Fail2Ban:
+https://rtcamp.com/tutorials/nginx/fail2ban/

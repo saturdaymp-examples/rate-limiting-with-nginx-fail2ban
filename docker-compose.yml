@@ -1,0 +1,10 @@
+services:
+  demo-start:
+    build:
+      dockerfile: Dockerfile.start
+    ports:
+      - 8080:80
+
+  demo-final:
+    build:
+      dockerfile: Dockerfile.end
