@@ -4,6 +4,10 @@ services:
       dockerfile: Dockerfile.start
     ports:
       - 8080:80
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - .:/demo-files
 
   demo-final:
     build:
