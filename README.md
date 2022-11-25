@@ -90,9 +90,9 @@ iptables -L
 
 ### Log Files
 
-nginx: `/var/log/nginx/access.log`
-nginx: `/var/log/nginx/error.log`
-fail2ban: `/var/log/fail2ban.log`
+- nginx: `/var/log/nginx/access.log`
+- nginx: `/var/log/nginx/error.log`
+- fail2ban: `/var/log/fail2ban.log`
 
 ## Acknowledgements
 Thank you to [BSides Edmonton](https://www.bsidesedmonton.ca/) for allowing me to present.  Also thank you to the [Corgibytes](https://corgibytes.com/) client that inspired this presentation.
