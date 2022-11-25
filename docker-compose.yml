@@ -9,6 +9,12 @@ services:
     volumes:
       - .:/demo-files
 
-  demo-final:
+  demo-end:
     build:
       dockerfile: Dockerfile.end
+    ports:
+      - 8080:80
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - .:/demo-files

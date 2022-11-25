@@ -75,21 +75,24 @@ fail2ban-client status
 ```
 
 ```
-fail2ban-client status ngxin-limit-req
+fail2ban-client status nginx-limit-req
 ```
 
 ```
 fail2ban-client set nginx-limit-req unbanip 172.22.0.1
 ```
 
-## Acknowledgements
-
-
 ### iptables: view current rules
 
 ```
 iptables -L
 ```
+
+### Log Files
+
+nginx: `/var/log/nginx/access.log`
+nginx: `/var/log/nginx/error.log`
+fail2ban: `/var/log/fail2ban.log`
 
 ## Acknowledgements
 Thank you to [BSides Edmonton](https://www.bsidesedmonton.ca/) for allowing me to present.  Also thank you to the [Corgibytes](https://corgibytes.com/) client that inspired this presentation.
