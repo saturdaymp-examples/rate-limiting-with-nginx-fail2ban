@@ -1,4 +1,4 @@
-# BSides Edmonton 2022 - Rate Limiting Using Nginx and Fail2Ban
+# Rate Limiting Using Nginx and Fail2Ban
 
 An demonstration of how to set up rate limiting using [nginx](https://nginx.org/) and [Fail2Ban](http://www.fail2ban.org).  This repo has the Docker container used for demo and the slides.  The Docker container should NOT be used for production.  It is setup for the demo and to mimic setting up rate limiting on a server.
 
@@ -82,8 +82,14 @@ fail2ban-client status ngxin-limit-req
 fail2ban-client set nginx-limit-req unbanip 172.22.0.1
 ```
 
+## Acknowledgements
+
+
 ### iptables: view current rules
 
 ```
 iptables -L
 ```
+
+## Acknowledgements
+Thank you to [BSides Edmonton](https://www.bsidesedmonton.ca/) for allowing me to present.  Also thank you to the [Corgibytes](https://corgibytes.com/) client that inspired this presentation.
