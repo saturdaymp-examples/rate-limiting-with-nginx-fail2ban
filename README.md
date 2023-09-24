@@ -30,7 +30,7 @@ To run the Docker container and follow along during the demo follow the steps be
 
 You will need to restart nginx and Fail2Ban if you make changes to their config files.  If you stop the container you will lose all your work.  If you want to keep your work run the container without the `--rm` flag.
 
-The completed demo, with everything enabled, is in the `demo-end` container instead of `demo-start`.  Completeded configuration files can be found at:
+The completed demo, with everything enabled, is in the `demo-end` container instead of `demo-start`.  Completed configuration files can be found at:
 
 - nginx config: [nginx/conf.d/default.conf](nginx/conf.d/default.conf)
 - Fail2Ban jail: [fail2ban.jail.d/nginx.conf](fail2ban.jail.d/nginx.conf)
@@ -80,6 +80,72 @@ fail2ban-client status nginx-limit-req
 
 ```
 fail2ban-client set nginx-limit-req unbanip 172.22.0.1
+```
+
+### Send a burst of requests
+
+You can send a bunch of requests by running the [send-requests.sh](send-requests.sh) file.  You will have to make it executable first via `chmod +x send-requests.sh`.  The script will send 10 curl requests by default but you can tweak the number as needed.
+
+```
+./send-requests.sh
+```
+
+Without Fail2Ban enabled all requests should return a 200:
+
+```
+HTTP/1.1 200 OK
+Server: nginx/1.25.2
+Date: Sun, 24 Sep 2023 16:40:14 GMT
+Content-Type: text/html
+Content-Length: 615
+Last-Modified: Tue, 15 Aug 2023 17:03:04 GMT
+Connection: keep-alive
+ETag: "64dbafc8-267"
+Accept-Ranges: bytes
+
+HTTP/1.1 200 OK
+Server: nginx/1.25.2
+Date: Sun, 24 Sep 2023 16:40:14 GMT
+Content-Type: text/html
+Content-Length: 615
+Last-Modified: Tue, 15 Aug 2023 17:03:04 GMT
+Connection: keep-alive
+ETag: "64dbafc8-267"
+Accept-Ranges: bytes
+
+<... More requests ...>
+```
+
+With nginx rate limiting enabled the requests will start timing out with 503 errors:
+
+```
+HTTP/1.1 200 OK
+Server: nginx/1.25.2
+Date: Sun, 24 Sep 2023 16:52:30 GMT
+Content-Type: text/html
+Content-Length: 615
+Last-Modified: Tue, 15 Aug 2023 17:03:04 GMT
+Connection: keep-alive
+ETag: "64dbafc8-267"
+Accept-Ranges: bytes
+
+HTTP/1.1 503 Service Temporarily Unavailable
+Server: nginx/1.25.2
+Date: Sun, 24 Sep 2023 16:52:30 GMT
+Content-Type: text/html
+Content-Length: 497
+Connection: keep-alive
+ETag: "64dbafc8-1f1"
+
+<... More requests ...>
+```
+
+Once Fail2Ban has blocked the IP address curl will return "Empty reply from server":
+
+```
+curl: (52) Empty reply from server
+
+<... More requests ...>
 ```
 
 ### iptables: view current rules
