@@ -1,6 +1,8 @@
 # Rate Limiting Using Nginx and Fail2Ban
 
-An demonstration of how to set up rate limiting using [nginx](https://nginx.org/) and [Fail2Ban](http://www.fail2ban.org).  This repo has the Docker container used for demo and the slides.  The Docker container should NOT be used for production.  It is setup for the demo and to mimic setting up rate limiting on a server.
+A demonstration of how to set up rate limiting using [nginx](https://nginx.org/) and [Fail2Ban](http://www.fail2ban.org) that I orginally presented at [BSides Edmonton](https://www.bsidesedmonton.ca/) in 2022.  A recorded version of the demo can be found [here](https://youtu.be/gR4w9trH9pA).
+
+This repo has the Docker container used for demo and the slides.  The Docker container should NOT be used for production as it is setup for the demo and to mimic setting up rate limiting on a server.
 
 ## Setup
 
@@ -39,6 +41,10 @@ Additional informaton about setting up rate limiting in nginx and Fail2Ban can b
 
 - Nginx rate limiting: https://www.nginx.com/blog/rate-limiting-nginx/
 - Fail2Ban: https://rtcamp.com/tutorials/nginx/fail2ban/
+
+A video of the demonstation:
+
+https://youtu.be/gR4w9trH9pA
 
 ## Useful Commands
 
