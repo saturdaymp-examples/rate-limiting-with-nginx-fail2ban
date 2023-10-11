@@ -35,7 +35,7 @@ You will need to restart nginx and Fail2Ban if you make changes to their config 
 The completed demo, with everything enabled, is in the `demo-end` container instead of `demo-start`.  Completed configuration files can be found at:
 
 - nginx config: [nginx/conf.d/default.conf](nginx/conf.d/default.conf)
-- Fail2Ban jail: [fail2ban.jail.d/nginx.conf](fail2ban.jail.d/nginx.conf)
+- Fail2Ban jail: [fail2ban/jail.d/nginx-limit-req.conf](fail2ban/jail.d/nginx-limit-req.conf)
 
 Additional informaton about setting up rate limiting in nginx and Fail2Ban can be found at:
 
