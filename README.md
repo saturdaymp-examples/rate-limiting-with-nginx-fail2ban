@@ -4,6 +4,8 @@ A demonstration of how to set up rate limiting using [nginx](https://nginx.org/)
 
 This repo has the Docker container used for demo and the slides.  The Docker container should NOT be used for production as it is setup for the demo and to mimic setting up rate limiting on a server.
 
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/saturdaymp?label=Sponsors&logo=githubsponsors&labelColor=3C444C)](https://github.com/sponsors/saturdaymp)
+
 ## Setup
 
 To run the Docker container and follow along during the demo follow the steps below.  This demo uses a [nginx Docker](https://hub.docker.com/_/nginx) container that has some customization such as installing Fail2Ban, iptables, and configuring the Docker network corretly.
